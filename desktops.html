@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delfa Tech · Desktops</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+            background: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        /* ----- HEADER ----- */
+        header {
+            background: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .logo-wrapper img {
+            width: 180px;
+            max-height: 50px;
+            object-fit: contain;
+        }
+        .logo-wrapper .site-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e343a;
+            white-space: nowrap;
+            letter-spacing: -0.5px;
+        }
+        .logo-wrapper .site-name span {
+            color: #3169bd;
+        }
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        nav a:hover {
+            color: #3169bd;
+        }
+        .search-box input {
+            padding: 10px 18px;
+            border-radius: 30px;
+            border: none;
+            background: #eee;
+            width: 100%;
+            max-width: 250px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .search-box input:focus {
+            background: #e0e0e0;
+            box-shadow: 0 0 0 2px #5a89d0;
+        }
+        .icons {
+            display: flex;
+            gap: 15px;
+            font-size: 22px;
+            color: #1e343a;
+            cursor: pointer;
+        }
+        .icons a {
+            color: #1e343a;
+            text-decoration: none;
+        }
+        .icons a:hover {
+            color: #3169bd;
+        }
+        .icons i:hover {
+            color: #3169bd;
+        }
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #1e343a;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-header {
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 40px;
+        }
+
+        /* ----- BRAND FILTER ----- */
+        .brand-filter {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 0 30px;
+            margin-bottom: 30px;
+            flex-wrap: nowrap;
+            justify-content: center;
+            scrollbar-width: thin;
+        }
+        .brand-filter::-webkit-scrollbar {
+            height: 4px;
+        }
+        .brand-filter::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        .brand-btn {
+            border: none;
+            background: white;
+            border-radius: 20px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid transparent;
+        }
+        .brand-btn img {
+            height: 32px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            transition: transform 0.2s;
+        }
+        .brand-btn span {
+            display: inline-block;
+        }
+        .brand-btn.active {
+            border-color: #3169bd;
+            background: #fff6f5;
+            box-shadow: 0 4px 12px rgba(55, 70, 166, 0.15);
+        }
+        .brand-btn.active img {
+            transform: scale(1.05);
+        }
+        .brand-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ----- PRODUCTS GRID ----- */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        .product-card {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            transition: .3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+        }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: #fafafa;
+            border-radius: 12px;
+        }
+        .brand-label {
+            display: inline-block;
+            border-radius: 20px;
+            margin: 10px 0 6px;
+            font-weight: 200;
+            font-size: 15px;
+        }
+        .rating {
+            color: #ffb400;
+            margin: 6px 0;
+            font-size: 0.95rem;
+        }
+        .stock {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #3169bd;
+            margin: 10px 0;
+        }
+
+        /* ----- "no current stock" message ----- */
+        .no-stock-msg {
+            grid-column: 1 / -1;
+            border-radius: 40px;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #132136;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            display: none;
+            margin: 10px 0;
+        }
+        .no-stock-msg i {
+            margin-right: 12px;
+            color: #3169bd;
+        }
+        .no-stock-msg.visible {
+            display: block;
+        }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background: #1e1e1e;
+            color: #fff;
+            padding-top: 60px;
+            margin-top: 60px;
+        }
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+        }
+        .footer-logo {
+            width: 90px;
+            max-height: 90px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+        .footer-box h3 {
+            margin-bottom: 20px;
+            color: #faf9f8;
+            font-size: 1.25rem;
+        }
+        .footer-box p {
+            line-height: 1.8;
+            color: #ccc;
+        }
+        .footer-box ul {
+            list-style: none;
+        }
+        .footer-box ul li {
+            margin-bottom: 12px;
+        }
+        .footer-box ul li a {
+            text-decoration: none;
+            color: #ccc;
+            transition: 0.3s;
+        }
+        .footer-box ul li a:hover {
+            color: #3169bd;
+            padding-left: 5px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+        .social-icons a:hover {
+            background: #3169bd;
+            transform: translateY(-3px);
+        }
+        .payment-section {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            margin-top: 50px;
+        }
+        .payment-section h4 {
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        .payments {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 2.8rem;
+            flex-wrap: wrap;
+            color: #ccc;
+        }
+        .payments i {
+            transition: 0.2s;
+            cursor: default;
+        }
+        .payments i:hover {
+            color: white;
+            transform: scale(1.05);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            padding: 25px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .bottom-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .bottom-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .bottom-links a:hover {
+            color: #8bc34a;
+        }
+
+        /* ---------- RESPONSIVE NAVIGATION  ---------- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+            }
+            .logo-wrapper {
+                flex: 0 0 auto;
+                gap: 4px;
+            }
+            .logo-wrapper .site-name {
+                font-size: 1rem;
+                white-space: nowrap;
+                margin-left: -2px;
+            }
+            .logo-wrapper img {
+                width: 130px;
+                max-height: 40px;
+            }
+
+            
+            nav {
+                width: 100%;
+                order: 4;
+                padding-top: 8px;
+                border-top: 1px solid #eee;
+            }
+            nav ul {
+                justify-content: center;
+                gap: 18px;
+                width: 100%;
+                flex-wrap: wrap;
+                padding: 4px 0;
+            }
+            nav ul li a {
+                font-size: 0.95rem;
+                padding: 4px 0;
+                display: inline-block;
+            }
+
+            .search-box {
+                order: 3;
+                flex: 1;
+                min-width: 120px;
+            }
+            .search-box input {
+                max-width: 100%;
+                width: 100%;
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+
+            .menu-btn {
+                display: block;
+                order: 2;
+                font-size: 24px;
+                padding: 0 8px;
+            }
+
+            .icons {
+                order: 1;
+                gap: 14px;
+                font-size: 20px;
+            }
+
+            
+        }
+
+        @media (max-width: 580px) {
+            .logo-wrapper .site-name {
+                font-size: 0.85rem;
+                margin-left: -1px;
+            }
+            .logo-wrapper {
+                gap: 3px;
+            }
+            .logo-wrapper img {
+                width: 100px;
+                max-height: 35px;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+            nav ul li a {
+                font-size: 0.8rem;
+                padding: 3px 0;
+            }
+
+            .search-box input {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .icons {
+                font-size: 17px;
+                gap: 10px;
+            }
+            .menu-btn {
+                font-size: 20px;
+                padding: 0 4px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .logo-wrapper .site-name {
+                font-size: 0.7rem;
+            }
+            .logo-wrapper img {
+                width: 80px;
+                max-height: 30px;
+            }
+            nav ul {
+                gap: 6px;
+            }
+            nav ul li a {
+                font-size: 0.7rem;
+            }
+            .search-box input {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            .icons {
+                font-size: 14px;
+                gap: 6px;
+            }
+            .menu-btn {
+                font-size: 16px;
+            }
+        }
+
+        /* ----- ORIGINAL RESPONSIVE STYLES  ----- */
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+        }
+        @media (max-width: 992px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .brand-filter {
+                gap: 14px;
+                justify-content: flex-start;
+            }
+        }
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 30px;
+            }
+            .brand-filter {
+                gap: 12px;
+                padding-bottom: 20px;
+                justify-content: flex-start;
+            }
+            .brand-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            .brand-btn img {
+                height: 26px;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+            .footer {
+                text-align: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+            }
+            .bottom-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .payments {
+                flex-wrap: wrap;
+                font-size: 32px;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo-wrapper .site-name {
+                font-size: 0.9rem;
+            }
+            .logo-wrapper img {
+                width: 100px;
+                max-height: 35px;
+            }
+            .products {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .product-card {
+                padding: 14px;
+            }
+            .product-card img {
+                height: 140px;
+            }
+            .price {
+                font-size: 22px;
+            }
+            .brand-filter {
+                gap: 8px;
+            }
+            .brand-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            .brand-btn img {
+                height: 22px;
+            }
+            .search-box input {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            nav ul {
+                gap: 8px;
+                font-size: 0.85rem;
+            }
+            .icons {
+                font-size: 16px;
+                gap: 10px;
+            }
+            .menu-btn {
+                font-size: 22px;
+            }
+            .page-header h1 {
+                font-size: 24px;
+            }
+        }
+
+       
+        #noStockMessage {
+            display: none;
+            margin: 20px 0 10px;
+        }
+        #noStockMessage.visible {
+            display: block;
+        }
+        .product-card {
+            display: flex;
+        }
+        .product-card.msi {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container">
+
+            <div class="logo-wrapper">
+                <img src="https://delfatech.com/images/logos/cropped-delfa-logo.png" alt="Logo">
+                <span class="site-name">Delfa <span>Tech</span></span>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="laptops.html">Laptops</a></li>
+                    <li><a href="desktops.html">Desktops</a></li>
+                    <li><a href="gaming.html">Gaming</a></li>
+                    <li><a href="projectors.html">Projectors</a></li>
+                </ul>
+            </nav>
+
+            <div class="icons">
+                <i class="fa fa-user"></i>
+                <a href="cart.html"><i class="fa fa-cart-shopping"></i></a>
+            </div>
+
+            <button class="menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="page-header">
+            <h1>Desktop Collection</h1>
+        </div>
+
+        <!-- BRAND FILTER -->
+        <div class="brand-filter" id="brandFilter">
+            <button class="brand-btn active" data-brand="all">
+                <span>All</span>
+            </button>
+            <button class="brand-btn" data-brand="dell">
+                <img src="https://img.icons8.com/color/48/000000/dell.png" alt="Dell">
+                <span>Dell</span>
+            </button>
+            <button class="brand-btn" data-brand="hp">
+                <img src="https://img.icons8.com/color/48/000000/hp.png" alt="HP">
+                <span>HP</span>
+            </button>
+            <button class="brand-btn" data-brand="lenovo">
+                <img src="https://img.icons8.com/color/48/000000/lenovo.png" alt="Lenovo">
+                <span>Lenovo</span>
+            </button>
+            <button class="brand-btn" data-brand="acer">
+                <img src="https://1000logos.net/wp-content/uploads/2016/09/Acer-logo.jpg" alt="Acer">
+                <span>Acer</span>
+            </button>
+        </div>
+
+        <!-- PRODUCTS GRID -->
+        <div class="products" id="productGrid">
+
+            <!-- Dell -->
+            <div class="product-card dell">
+                <img src="https://techzone.lk/wp-content/uploads/2024/12/Dell-Inspiron-3030-14th-Gen-i5-Desktop-1.jpg" alt="Dell Inspiron">
+                <div class="brand-label">Dell</div>
+                <h3>Dell Inspiron Desktop 3030 Core i5 14th Gen</h3>
+                <div class="rating">★★★★★ (4.9)</div>
+                <div class="stock">Quantity : 24</div>
+                <div class="price">LKR 260,000</div>
+            </div>
+
+            <!-- HP 1 -->
+            <div class="product-card hp">
+                <img src="https://i5.walmartimages.com/seo/HP-Slim-27-Desktop-Bundle-Intel-Core-i3-10105-8GB-RAM-256GB-SSD-Dark-Black-Windows-11-Home-S01-pF2003wb-M27fe_747beed0-b12e-4f75-94bd-909d0918def9.78d78711c2ad687c390599836246fc99.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="HP AIO">
+                <div class="brand-label">HP</div>
+                <h3>HP AIO 11Gen Intel Core i5 - 1135G7</h3>
+                <div class="rating">★★★★☆ (4.7)</div>
+                <div class="stock">Quantity : 5</div>
+                <div class="price">LKR 109,900</div>
+            </div>
+
+            <!-- HP 2 -->
+            <div class="product-card hp">
+                <img src="https://hp.widen.net/content/aqqyvg0kkc/png/aqqyvg0kkc.png?w=800&h=600&dpi=72&color=ffffff00" alt="HP Pavilion">
+                <div class="brand-label">HP</div>
+                <h3>HP Pavilion Desktop</h3>
+                <div class="rating">★★★★★ (4.9)</div>
+                <div class="stock">Quantity : 18</div>
+                <div class="price">LKR 169,900</div>
+            </div>
+
+            <!-- Acer -->
+            <div class="product-card acer">
+                <img src="https://abansit.lk/frontend_assets/img/products/ACAIOC24I58GB1TB.png" alt="Acer Aspire" style="background:transparent;">
+                <div class="brand-label">Acer</div>
+                <h3>Acer Aspire Desktop Core i7</h3>
+                <div class="rating">★★★★☆ (4.5)</div>
+                <div class="stock">Quantity : 7</div>
+                <div class="price">LKR 99,900</div>
+            </div>
+
+        </div>
+
+        <!-- "No current stock" message -->
+        <div id="noStockMessage" class="no-stock-msg">
+            <i class="fas fa-exclamation-triangle"></i> No current stock for this brand.
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-box">
+                <img src="https://delfatech.com/images/logos/cropped-delfa-logo.png" alt="Logo" class="footer-logo">
+                <p>Delfa Tech provides high-quality laptops, gaming accessories, desktops, projectors, and computer components at affordable prices.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Offers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Laptops</a></li>
+                    <li><a href="#">Gaming PCs</a></li>
+                    <li><a href="#">Monitors</a></li>
+                    <li><a href="#">Keyboards</a></li>
+                    <li><a href="#">Headsets</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-location-dot"></i> Colombo, Sri Lanka</p>
+                <p><i class="fas fa-phone"></i> +94 76 123 4567</p>
+                <p><i class="fas fa-envelope"></i> support@becompshop.com</p>
+                <p><i class="fas fa-clock"></i> Mon - Sat : 8AM - 8PM</p>
+            </div>
+        </div>
+        <div class="payment-section">
+            <h4>Secure Payments</h4>
+            <div class="payments">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fab fa-google-pay"></i>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Delfa Tech. All Rights Reserved.</p>
+            <div class="bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const products = document.querySelectorAll('.product-card');
+            const noStockMsg = document.getElementById('noStockMessage');
+            const brandBtns = document.querySelectorAll('.brand-btn');
+
+            function filterProducts(brand) {
+                let visibleCount = 0;
+                products.forEach(product => {
+                    const hasBrand = product.classList.contains(brand);
+                    if (brand === 'all') {
+                        product.style.display = 'flex';
+                        visibleCount++;
+                    } else if (hasBrand) {
+                        product.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+                if (brand !== 'all' && visibleCount === 0) {
+                    noStockMsg.classList.add('visible');
+                } else {
+                    noStockMsg.classList.remove('visible');
+                }
+                brandBtns.forEach(btn => btn.classList.remove('active'));
+                brandBtns.forEach(btn => {
+                    if (btn.dataset.brand === brand) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+
+            brandBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const brand = this.dataset.brand;
+                    filterProducts(brand);
+                });
+            });
+
+            filterProducts('all');
+        })();
+    </script>
+
+</body>
+</html>

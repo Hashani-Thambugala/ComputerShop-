@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delfa Tech</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* ----- HEADER  ----- */
+    header {
+      background: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .logo-wrapper img {
+      width: 180px;
+      max-height: 50px;
+      object-fit: contain;
+    }
+    .logo-wrapper .site-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e343a;
+      white-space: nowrap;
+      letter-spacing: -0.5px;
+      margin-left: -4px;
+    }
+    .logo-wrapper .site-name span {
+      color: #3169bd;
+    }
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    nav a:hover {
+      color: #3169bd;
+    }
+    .search-box input {
+      padding: 10px 18px;
+      border-radius: 30px;
+      border: none;
+      background: #eee;
+      width: 100%;
+      max-width: 250px;
+      outline: none;
+      transition: 0.2s;
+    }
+    .search-box input:focus {
+      background: #e0e0e0;
+      box-shadow: 0 0 0 2px #5a89d0;
+    }
+    .icons {
+      display: flex;
+      gap: 15px;
+      font-size: 22px;
+      color: #1e343a;
+      cursor: pointer;
+    }
+    .icons i:hover {
+      color: #3169bd;
+    }
+    .icons a {
+      color: #1e343a;
+      text-decoration: none;
+    }
+    .icons a:hover {
+      color: #3169bd;
+    }
+    .menu-btn {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #1e343a;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      width: 98%;
+      margin: 10px auto;
+      padding: 60px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      min-height: 500px;
+      flex-wrap: wrap;
+      background-image: url('https://static.vecteezy.com/system/resources/thumbnails/072/311/166/small/futuristic-blue-digital-technology-background-with-geometric-lines-and-gradients-photo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 20, 30, 0.55);
+      z-index: 1;
+    }
+    .hero-content {
+      max-width: 500px;
+      color: white;
+      z-index: 2;
+      flex: 1 1 300px;
+    }
+    .badge {
+      background: #ffffff20;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin: 20px 0;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+    .hero-btn {
+      padding: 15px 35px;
+      border: none;
+      border-radius: 10px;
+      background: #3169bd;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .hero-btn:hover {
+      transform: translateY(-3px);
+    }
+    .hero-image {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 850px;
+      max-height: 500px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 35px rgba(0,0,0,.45));
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    /* ----- CATEGORY ----- */
+    .section-title {
+      margin: 40px 0 20px;
+    }
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .category {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+    .category img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .category h3 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.3);
+      color: white;
+    }
+
+    /* ----- PRODUCTS (slider) ----- */
+    .products {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 10px 0 20px;
+      scroll-behavior: smooth;
+    }
+    .products::-webkit-scrollbar {
+      height: 8px;
+    }
+    .products::-webkit-scrollbar-thumb {
+      background: #cecfcd;
+      border-radius: 10px;
+    }
+    .products::-webkit-scrollbar-track {
+      background: #ddd;
+    }
+    .product-card {
+      min-width: 280px;
+      max-width: 280px;
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 15px;
+      transition: .3s;
+      flex-shrink: 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    }
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+    }
+    .product-title {
+      font-size: 18px;
+      margin: 6px 0;
+      font-weight: 600;
+    }
+    .price {
+      font-size: 22px;
+      color: #3169bd;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .rating {
+      color: #ffc107;
+      margin-bottom: 5px;
+    }
+    .sold {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .slider-buttons button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: #dadbd9;
+      color: #3169bd;
+      margin-left: 10px;
+    }
+
+    /* ----- MUSIC BANNER ----- */
+    .music-banner {
+      width: 95%;
+      max-width: 1200px;
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #e5e5e6;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .banner-left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .banner-right {
+      padding: 30px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .banner-right h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .banner-right > p {
+      font-size: 1rem;
+      color: #2c514c;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .featured-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      border-radius: 28px;
+      padding: 16px 20px;
+    }
+    .featured-img {
+      max-width: 280px;
+      text-align: center;
+    }
+    .featured-img img {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      transition: transform 0.2s;
+    }
+    .featured-details {
+      flex: 2;
+      min-width: 200px;
+    }
+    .featured-details h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 5px 0 8px;
+    }
+    .rating-block {
+      color: #ffb400;
+      font-size: 1rem;
+      margin: 8px 0 6px;
+    }
+    .sold-text {
+      color: #4b5e5a;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .price-box {
+      margin: 12px 0 16px;
+    }
+    .old-price {
+      text-decoration: line-through;
+      color: #7b8a87;
+      font-size: 1.1rem;
+      margin-right: 12px;
+    }
+    .new-price {
+      color: #3169bd;
+      font-size: 1.9rem;
+      font-weight: 800;
+    }
+    .banner-buttons {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .buy-now {
+      background: #3169bd;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .buy-now:hover { 
+      background: #0a120b; 
+      transform: scale(0.97); 
+    }
+    .cart-btn {
+      background: #1e2a2a;
+      color: rgb(250, 247, 247);
+      width: 48px;
+      height: 48px;
+      border-radius: 60px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .cart-btn:hover { 
+      background: #3169bd; 
+    }
+
+    /* ----- OFFER ----- */
+    .offer {
+      width: 90%;
+      max-width: 1200px;
+      margin: 50px auto;
+      background: linear-gradient(135deg, #b3c1c1, #203b64);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      flex-wrap: wrap;
+      padding: 20px 40px;
+    }
+    .offer img {
+      width: 100%;
+      max-width: 550px;
+      display: block;
+    }
+    .offer h2 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+    .offer h3 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+    .offer p {
+      font-size: 1.1rem;
+      font-weight: 200;
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+    .offer h1 {
+      font-size: 5rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+    .offer-content {
+      flex: 1 1 300px;
+    }
+    .offer-image {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    /* ----- FEATURES ----- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .feature {
+      background: white;
+      padding: 25px;
+      text-align: center;
+      border-radius: 15px;
+    }
+
+    /* ----- NEWSLETTER ----- */
+    .newsletter {
+      width: 90%;
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 70px;
+      background: url('https://static.vecteezy.com/system/resources/thumbnails/073/841/655/small/close-up-of-a-computer-keyboard-with-a-dark-modern-aesthetic-and-a-blurred-bright-background-free-photo.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      text-align: center;
+      color: white;
+    }
+    .newsletter form {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .newsletter input {
+      padding: 12px;
+      width: 300px;
+      border: none;
+      border-radius: 4px;
+      border-color: #2e5ea7;
+    }
+    .newsletter button {
+      padding: 12px 25px;
+      border: none;
+      background: #2e5ea7;
+      color: rgb(250, 247, 247);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .newsletter button:hover { background: #566c91; }
+
+    /* ----- FOOTER  ----- */
+    .footer {
+      background: #1e1e1e;
+      color: #fff;
+      padding-top: 60px;
+      margin-top: 60px;
+    }
+    .footer-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+    }
+    .footer-logo {
+      width: 90px;
+      max-height: 90px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+    .footer-box h3 {
+      margin-bottom: 20px;
+      color: #faf9f8;
+      font-size: 1.25rem;
+    }
+    .footer-box p {
+      line-height: 1.8;
+      color: #ccc;
+    }
+    .footer-box ul {
+      list-style: none;
+    }
+    .footer-box ul li {
+      margin-bottom: 12px;
+    }
+    .footer-box ul li a {
+      text-decoration: none;
+      color: #ccc;
+      transition: 0.3s;
+    }
+    .footer-box ul li a:hover {
+      color: #3169bd;
+      padding-left: 5px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .social-icons a {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: #333;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 1.1rem;
+    }
+    .social-icons a:hover {
+      background: #3169bd;
+      transform: translateY(-3px);
+    }
+    .payment-section {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      margin-top: 50px;
+    }
+    .payment-section h4 {
+      margin-bottom: 20px;
+      color: #ddd;
+    }
+    .payments {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 2.8rem;
+      flex-wrap: wrap;
+      color: #ccc;
+    }
+    .payments i {
+      transition: 0.2s;
+      cursor: default;
+    }
+    .payments i:hover {
+      color: white;
+      transform: scale(1.05);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 25px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .bottom-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .bottom-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .bottom-links a:hover {
+      color: #2e5ea7;
+    }
+
+
+    /* ----- RESPONSIVE  ----- */
+    @media (max-width: 992px) {
+      .hero { 
+        flex-direction: column; 
+        text-align: center; 
+      }
+      .features { 
+        grid-template-columns: repeat(2, 1fr); 
+      }
+      .music-banner { 
+        grid-template-columns: 1fr; 
+      }
+      .offer {
+         flex-direction: column; 
+         text-align: center; 
+        }
+      .categories { 
+        grid-template-columns: 1fr 1fr; 
+      }
+    }
+
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .logo-wrapper {
+        flex: 0 0 auto;
+        gap: 4px;
+      }
+      .logo-wrapper .site-name {
+        font-size: 1rem;
+        white-space: nowrap;
+        margin-left: -2px;
+      }
+      .logo-wrapper img {
+        width: 130px;
+        max-height: 40px;
+      }
+
+      
+      nav {
+        width: 100%;
+        order: 4;
+        padding-top: 8px;
+        border-top: 1px solid #eee;
+      }
+      nav ul {
+        justify-content: center;
+        gap: 18px;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 4px 0;
+      }
+      nav ul li a {
+        font-size: 0.95rem;
+        padding: 4px 0;
+        display: inline-block;
+      }
+
+      .search-box {
+        order: 3;
+        flex: 1;
+        min-width: 120px;
+      }
+      .search-box input {
+        max-width: 100%;
+        width: 100%;
+        padding: 8px 14px;
+        font-size: 0.9rem;
+      }
+
+      .menu-btn {
+        display: block;
+        order: 2;
+        font-size: 24px;
+        padding: 0 8px;
+      }
+
+      .icons {
+        order: 1;
+        gap: 14px;
+        font-size: 20px;
+      }
+
+      .hero { 
+        padding: 30px 20px; 
+        min-height: 400px; 
+      }
+      .hero h1 { 
+        font-size: 2.5rem; 
+      }
+      .hero-image img { 
+        max-width: 320px; 
+      }
+      .categories { 
+        grid-template-columns: 1fr; 
+      }
+      .features { 
+        grid-template-columns: 1fr 1fr; 
+      }
+      .footer { 
+        text-align: center; 
+      }
+      .social-icons { 
+        justify-content: center; 
+      }
+      .footer-bottom { 
+        flex-direction: column; 
+      }
+      .bottom-links { 
+        flex-direction: column; 
+        gap: 10px; 
+      }
+      .payments { 
+        font-size: 32px; 
+      }
+      .offer h2 { 
+        font-size: 3rem; 
+      }
+      .offer h1 { 
+        font-size: 3.5rem; 
+      }
+      .offer h3 { 
+        font-size: 2rem; 
+      }
+      .newsletter { 
+        padding: 40px 20px; 
+      }
+      .newsletter form { 
+        flex-direction: column; 
+        align-items: center; 
+      }
+      .newsletter input { 
+        width: 100%; 
+        max-width: 350px; 
+      }
+    }
+
+    @media (max-width: 580px) {
+      .logo-wrapper .site-name {
+        font-size: 0.85rem;
+        margin-left: -1px;
+      }
+      .logo-wrapper {
+        gap: 3px;
+      }
+      .logo-wrapper img {
+        width: 100px;
+        max-height: 35px;
+      }
+
+      nav ul {
+        gap: 10px;
+      }
+      nav ul li a {
+        font-size: 0.8rem;
+        padding: 3px 0;
+      }
+
+      .search-box input {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+
+      .icons {
+        font-size: 17px;
+        gap: 10px;
+      }
+      .menu-btn {
+        font-size: 20px;
+        padding: 0 4px;
+      }
+
+      .hero h1 { 
+        font-size: 2rem; 
+      }
+      .hero { 
+        min-height: 350px; 
+        padding: 20px; 
+      }
+      .product-card { 
+        min-width: 220px; 
+        max-width: 220px; 
+      }
+      .banner-right { 
+        padding: 20px; 
+      }
+      .featured-row { 
+        flex-direction: column; 
+        text-align: center; 
+      }
+      .banner-buttons { 
+        justify-content: center; 
+      }
+      .offer { 
+        padding: 20px; 
+      }
+      .offer h2 { 
+        font-size: 2.2rem; 
+      }
+      .offer h1 { 
+        font-size: 2.8rem; 
+      }
+      .features { 
+        grid-template-columns: 1fr; 
+      }
+    }
+
+    @media (max-width: 380px) {
+      .logo-wrapper .site-name {
+        font-size: 0.7rem;
+      }
+      .logo-wrapper img {
+        width: 80px;
+        max-height: 30px;
+      }
+      nav ul {
+        gap: 6px;
+      }
+      nav ul li a {
+        font-size: 0.7rem;
+      }
+      .search-box input {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+      }
+      .icons {
+        font-size: 14px;
+        gap: 6px;
+      }
+      .menu-btn {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER  -->
+<header>
+  <div class="container nav-container">
+    <div class="logo-wrapper">
+      <img src="https://delfatech.com/images/logos/cropped-delfa-logo.png" alt="Logo">
+      <span class="site-name">Delfa <span>Tech</span></span>
+    </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search...">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="laptops.html">Laptops</a></li>
+        <li><a href="desktops.html">Desktops</a></li>
+        <li><a href="gaming.html">Gaming</a></li>
+        <li><a href="projectors.html">Projectors</a></li>
+      </ul>
+    </nav>
+    <div class="icons">
+      <i class="fa fa-user"></i>
+      <a href="cart.html"><i class="fa fa-cart-shopping"></i></a>
+    </div>
+    <button class="menu-btn" aria-label="Toggle menu">
+      <a href="signin.html"><i class="fas fa-bars"></i></a>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="badge">NEW ARRIVAL</span>
+    <h1>Gaming Mechanical Controller</h1>
+    <p>Experience ultra-fast response, RGB lighting, and premium mechanical switches designed for gamers and professionals.</p>
+    <button class="hero-btn">Buy Now </button>
+  </div>
+  <div class="hero-image">
+    <img src="images/hero4.png" alt="Gaming Keyboard">
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="container">
+  <h2 class="section-title">Categories</h2>
+  <div class="categories">
+    <div class="category">
+      <a href="laptops.html">
+        <img src="https://cdn.mos.cms.futurecdn.net/EW3NoUEQuteWDPS2xkSgtA.jpg" alt="Laptops">
+        <div class="overlay"><h3>Laptops</h3></div>
+      </a>
+    </div>
+    <div class="category">
+      <a href="desktops.html">
+        <img src="https://images.unsplash.com/photo-1614624532983-4ce03382d63d?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGRlc2t0b3AlMjBjb21wdXRlcnxlbnwwfHwwfHx8MA%3D%3D" alt="Desktops">
+        <div class="overlay"><h3>Desktops</h3></div>
+      </a>
+    </div>
+    <div class="category">
+      <a href="gaming.html">
+        <img src="https://directcomputers.co.uk/cdn/shop/articles/setting-up-your-brand-new-pc-helpful-guide.webp?v=1685612076&width=1600" alt="Gaming">
+        <div class="overlay"><h3>Gaming</h3></div>
+      </a>
+    </div>
+    <div class="category">
+      <a href="projectors.html">
+        <img src="https://eu.jvc.com/files/images/_bigbanner/6/_sp/2024/768x418-4/768_418_Scorpio_living_image_for_webs.webp" alt="Projectors">
+        <div class="overlay"><h3>Projectors</h3></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR PRODUCTS (slider) -->
+<section class="container">
+  <div class="product-header">
+    <h2 class="section-title">Popular Products</h2>
+    <div class="slider-buttons">
+      <button id="leftBtn"><i class="fas fa-chevron-left"></i></button>
+      <button id="rightBtn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div class="products" id="productSlider">
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/61b6z5Hc+qL._AC_UF894,1000_QL80_.jpg" alt="Gaming Keyboard RGB">
+      <h3 class="product-title">Gaming Mouse RGB</h3>
+      <div class="rating">★★★★★ <span>(4.9)</span></div>
+      <div class="sold">1,250 Sold</div>
+      <div class="price">LKR 6,000</div>
+    </div>
+    <div class="product-card">
+      <img src="https://techzone.lk/wp-content/uploads/2023/12/1-29.jpg" alt="Laptops">
+      <h3 class="product-title">Laptops</h3>
+      <div class="rating">★★★★☆ <span>(4.6)</span></div>
+      <div class="sold">850 Sold</div>
+      <div class="price">LKR 45,000</div>
+    </div>
+    <div class="product-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_15UKw_bw0fzJefxHbNmM_tae66i-Q1BKHw&s" alt="RGB Gaming Headset">
+      <h3 class="product-title">RGB Gaming Headset</h3>
+      <div class="rating">★★★★★ <span>(4.8)</span></div>
+      <div class="sold">2,100 Sold</div>
+      <div class="price">LKR 7,900</div>
+    </div>
+    <div class="product-card">
+      <img src="https://i.pinimg.com/736x/9e/43/44/9e4344fbf8840d797623bdaedae115e8.jpg" alt="Desktop Computer">
+      <h3 class="product-title">Desktop Computer</h3>
+      <div class="rating">★★★★★ <span>(5.0)</span></div>
+      <div class="sold">560 Sold</div>
+      <div class="price">LKR 89,900</div>
+    </div>
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/715CeFp-7NL._AC_UF894,1000_QL80_.jpg" alt="JBL">
+      <h3 class="product-title">JBL</h3>
+      <div class="rating">★★★★★ <span>(5.0)</span></div>
+      <div class="sold">56 Sold</div>
+      <div class="price">LKR 6,990</div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC BANNER -->
+<section class="music-banner">
+  <div class="banner-left">
+    <img src="https://media.istockphoto.com/id/1395567847/photo/girl-in-an-oversized-hoodie-wearing-wireless-headphones-face-in-profile-neon-pink-and-blue.jpg?s=612x612&w=0&k=20&c=cagKxGtgvCjAf9X3aLMR8ddeaiGlw6Je28htzSoNR0A=" alt="music banner">
+  </div>
+  <div class="banner-right">
+    <h2>Please, don't stop the music!</h2>
+    <p>Users choice in this week.</p>
+    <div class="featured-row">
+      <div class="featured-img">
+        <img src="https://resource.logitech.com/w_386,ar_1.0,c_limit,f_auto,q_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/headsets/zone-wired-2/gallery/b2b-zone-wired2-business-headset-white-gallery1.png?v=1" alt="Headset">
+      </div>
+      <div class="featured-details">
+        <h3>Headset</h3>
+        <div class="rating-block">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <span>(5.0)</span>
+        </div>
+        <p class="sold-text">56 Sold</p>
+        <div class="price-box">
+          <span class="old-price">$799</span>
+          <span class="new-price">$699</span>
+        </div>
+        <div class="banner-buttons">
+          <button class="buy-now">Buy Now</button>
+          <button class="cart-btn"><i class="fas fa-cart-shopping"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL OFFER -->
+<section class="offer">
+  <div class="offer-image">
+    <img src="images/offerimg.png" alt="offer">
+  </div>
+  <div class="offer-content">
+    <h2>Special Offer</h2>
+    <h1>30%</h1>
+    <h3>Dell & Lenovo Laptops</h3>
+    <p>Most intelligent & secure business laptops. Small, light, and stylish Dell laptops in Sri Lanka and 2-in-1s designed for ultimate productivity. A new era of collaboration and connectivity to work anywhere. Latitude 3000 series – take productivity to the next level with the AI responsive Latitude 3000 series. Dell Laptops in Sri Lanka feature enterprise tools designed to remove barriers and increase efficiency for any business.</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="container">
+  <h2 class="section-title">Why Us?</h2>
+  <div class="features">
+    <div class="feature"><i class="fa fa-headset"></i><h4>24/7 Support</h4></div>
+    <div class="feature"><i class="fa fa-truck"></i><h4>Free Shipping</h4></div>
+    <div class="feature"><i class="fa fa-credit-card"></i><h4>Easy Payment</h4></div>
+    <div class="feature"><i class="fa fa-tag"></i><h4>Big Discounts</h4></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-content">
+    <h2>Join With Us</h2>
+    <p>Receive updates, discounts and latest products.</p>
+    <form>
+      <input type="email" placeholder="Enter Email">
+      <button>Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER  -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="https://delfatech.com/images/logos/cropped-delfa-logo.png" alt="Logo" class="footer-logo">
+      <p>Delfa Tec provides high-quality laptops, gaming accessories, desktops, projectors, and computer components at affordable prices.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Offers</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="#">Laptops</a></li>
+        <li><a href="#">Gaming PCs</a></li>
+        <li><a href="#">Monitors</a></li>
+        <li><a href="#">Keyboards</a></li>
+        <li><a href="#">Headsets</a></li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Info</h3>
+      <p><i class="fas fa-location-dot"></i> Wariyapola, Sri Lanka</p>
+      <p><i class="fas fa-phone"></i> +94 76 123 4567</p>
+      <p><i class="fas fa-envelope"></i> support@delfatech.com</p>
+      <p><i class="fas fa-clock"></i> Mon - Sat : 8AM - 8PM</p>
+    </div>
+  </div>
+  <div class="payment-section">
+    <h4>Secure Payments</h4>
+    <div class="payments">
+      <i class="fab fa-cc-visa"></i>
+      <i class="fab fa-cc-mastercard"></i>
+      <i class="fab fa-cc-paypal"></i>
+      <i class="fab fa-google-pay"></i>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Delfa Tec. All Rights Reserved.</p>
+    <div class="bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const products = document.querySelector(".products");
+  document.getElementById("rightBtn").addEventListener("click", () => {
+    products.scrollBy({ left: 300, behavior: "smooth" });
+  });
+  document.getElementById("leftBtn").addEventListener("click", () => {
+    products.scrollBy({ left: -300, behavior: "smooth" });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delfa Tech</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* ----- HEADER  ----- */
+    header {
+      background: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .logo-wrapper img {
+      width: 180px;
+      max-height: 50px;
+      object-fit: contain;
+    }
+    .logo-wrapper .site-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e343a;
+      white-space: nowrap;
+      letter-spacing: -0.5px;
+    }
+    .logo-wrapper .site-name span {
+      color: #3169bd;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      flex-wrap: wrap;
+      font-weight: 600px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    nav a:hover {
+      color: #3169bd;
+    }
+    .search-box input {
+      padding: 10px 18px;
+      border-radius: 30px;
+      border: none;
+      background: #eee;
+      width: 100%;
+      max-width: 250px;
+      outline: none;
+      transition: 0.2s;
+    }
+    .search-box input:focus {
+      background: #e0e0e0;
+      box-shadow: 0 0 0 2px #5a89d0;
+    }
+    .icons {
+      display: flex;
+      gap: 15px;
+      font-size: 22px;
+      color: #1e343a;
+      cursor: pointer;
+    }
+    .icons i:hover {
+      color: #3169bd;
+    }
+    .icons a {
+      color: #1e343a;
+      text-decoration: none;
+    }
+    .icons a:hover {
+      color: #3169bd;
+    }
+    .menu-btn {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #1e343a;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+
+    /* ----- product details section ----- */
+    .product-details {
+      width: 90%;
+      max-width: 1400px;
+      margin: 50px auto;
+    }
+
+    .breadcrumb {
+      margin-bottom: 30px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+    .breadcrumb span {
+      color: #1e343a;
+      font-weight: 500;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* gallery */
+    .gallery {
+      display: flex;
+      gap: 20px;
+    }
+
+    .thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .thumbs img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 14px;
+      cursor: pointer;
+      background: white;
+      padding: 6px;
+      border: 2px solid transparent;
+      transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .thumbs img:hover {
+      border-color: #3169bd;
+      transform: scale(1.03);
+    }
+
+    .main-image {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .main-image img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+    }
+
+    /* product info */
+    .brand-tag {
+      background: #cfdbed;
+      padding: 8px 20px;
+      border-radius: 20px;
+      color: #3169bd;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .product-info h1 {
+      margin: 10px 0 5px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1e343a;
+    }
+
+    .rating {
+      color: #ffb400;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .rating span {
+      color: #666;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .sold {
+      margin: 8px 0 14px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #df5d4e;
+      margin: 16px 0 10px;
+    }
+
+    .stock {
+      margin-bottom: 18px;
+      color: #3169bd;
+      font-weight: 500;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+
+    .spec-short p {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .spec-short p::before {
+      content: "●";
+      color: #3169bd;
+      font-size: 0.7rem;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: 18px 0 20px;
+    }
+
+    .quantity button {
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: #f0f0f0;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.4rem;
+      font-weight: 600;
+      transition: 0.2s;
+      color: #1e343a;
+    }
+    .quantity button:hover {
+      color: #3169bd;
+    }
+
+    .quantity input {
+      width: 50px;
+      height: 34px;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      outline: none;
+    }
+    .quantity input:focus {
+      border-color: #3169bd;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .cart-btn, .buy-btn {
+      flex: 1;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .cart-btn {
+      background: #1e343a;
+      color: white;
+    }
+    .cart-btn:hover {
+      background: #3169bd;
+      transform: scale(1.02);
+    }
+
+    .buy-btn {
+      background: #3169bd;
+      color: white;
+    }
+    .buy-btn:hover {
+      background: #0d1014;
+      transform: scale(1.02);
+    }
+
+    /* ----- TABS  ----- */
+    .product-tabs {
+      width: 90%;
+      max-width: 1400px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    }
+
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 18px;
+    }
+
+    .tab-buttons button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 10px;
+      background: #f1f1f1;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: 0.25s;
+      color: #333;
+    }
+
+    .tab-buttons button:hover {
+      background: #3169bd;
+      color: white;
+    }
+
+    .tab-buttons .active {
+      background: #3169bd;
+      color: white;
+    }
+
+    .tab-content {
+      line-height: 1.9;
+    }
+    .tab-content h2 {
+      margin-bottom: 16px;
+      color: #1e343a;
+      font-size: 1.8rem;
+    }
+    .tab-content p {
+      color: #555;
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+    }
+
+     /* ----- PRODUCTS (slider) ----- */
+    .products {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 10px 0 20px;
+      scroll-behavior: smooth;
+    }
+    .products::-webkit-scrollbar {
+      height: 8px;
+    }
+    .products::-webkit-scrollbar-thumb {
+      background: #cecfcd;
+      border-radius: 10px;
+    }
+    .products::-webkit-scrollbar-track {
+      background: #ddd;
+    }
+    .product-card {
+      min-width: 280px;
+      max-width: 280px;
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 15px;
+      transition: .3s;
+      flex-shrink: 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    }
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+    }
+    .product-title {
+      font-size: 18px;
+      margin: 6px 0;
+      font-weight: 600;
+    }
+    .price {
+      font-size: 22px;
+      color: #3169bd;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .rating {
+      color: #ffc107;
+      margin-bottom: 5px;
+    }
+    .sold {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .slider-buttons button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: #dadbd9;
+      color: rgb(91, 33, 33);
+      margin-left: 10px;
+    }
+
+    /* slider controls  */
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .slider-buttons button {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      margin-left: 12px;
+      font-size: 1.1rem;
+      transition: 0.2s;
+    }
+    .slider-buttons button:hover {
+      background: #3169bd;
+      color: white;
+    }
+
+    /* ----- FOOTER  ----- */
+    .footer {
+      background: #1e1e1e;
+      color: #fff;
+      padding-top: 60px;
+      margin-top: 60px;
+    }
+    .footer-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+    }
+    .footer-logo {
+      width: 90px;
+      max-height: 90px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+    .footer-box h3 {
+      margin-bottom: 20px;
+      color: #faf9f8;
+      font-size: 1.25rem;
+    }
+    .footer-box p {
+      line-height: 1.8;
+      color: #ccc;
+    }
+    .footer-box ul {
+      list-style: none;
+    }
+    .footer-box ul li {
+      margin-bottom: 12px;
+    }
+    .footer-box ul li a {
+      text-decoration: none;
+      color: #ccc;
+      transition: 0.3s;
+    }
+    .footer-box ul li a:hover {
+      color: #3169bd;
+      padding-left: 5px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .social-icons a {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: #333;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 1.1rem;
+    }
+    .social-icons a:hover {
+      background: #3169bd;
+      transform: translateY(-3px);
+    }
+    .payment-section {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      margin-top: 50px;
+    }
+    .payment-section h4 {
+      margin-bottom: 20px;
+      color: #ddd;
+    }
+    .payments {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 2.8rem;
+      flex-wrap: wrap;
+      color: #ccc;
+    }
+    .payments i {
+      transition: 0.2s;
+      cursor: default;
+    }
+    .payments i:hover {
+      color: white;
+      transform: scale(1.05);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 25px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .bottom-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .bottom-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .bottom-links a:hover {
+      color: #8bc34a;
+    }
+
+    /* ---------- RESPONSIVE NAVIGATION  ---------- */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo-wrapper {
+        flex: 0 0 auto;
+      }
+      .logo-wrapper img {
+        width: 130px;
+        max-height: 40px;
+      }
+      .logo-wrapper .site-name {
+        font-size: 1.1rem;
+      }
+      nav {
+        width: 100%;
+        order: 4;
+        padding-top: 8px;
+        border-top: 1px solid #eee;
+      }
+      nav ul {
+        justify-content: center;
+        gap: 18px;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 4px 0;
+      }
+      nav ul li a {
+        font-size: 0.95rem;
+        padding: 4px 0;
+        display: inline-block;
+      }
+      .search-box {
+        order: 3;
+        flex: 1;
+        min-width: 120px;
+      }
+      .search-box input {
+        max-width: 100%;
+        padding: 8px 14px;
+        font-size: 0.9rem;
+      }
+      .menu-btn {
+        display: block;
+        order: 2;
+        font-size: 24px;
+        padding: 0 8px;
+      }
+      .icons {
+        order: 1;
+        gap: 12px;
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .logo-wrapper .site-name {
+        font-size: 0.85rem;
+      }
+      .logo-wrapper img {
+        width: 100px;
+        max-height: 35px;
+      }
+      nav ul {
+        gap: 10px;
+      }
+      nav ul li a {
+        font-size: 0.8rem;
+        padding: 3px 0;
+      }
+      .search-box input {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+      .icons {
+        font-size: 17px;
+        gap: 10px;
+      }
+      .menu-btn {
+        font-size: 20px;
+        padding: 0 4px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .logo-wrapper .site-name {
+        font-size: 0.75rem;
+      }
+      .logo-wrapper img {
+        width: 80px;
+      }
+      nav ul {
+        gap: 6px;
+      }
+      nav ul li a {
+        font-size: 0.7rem;
+      }
+      .search-box input {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+      }
+      .icons {
+        font-size: 14px;
+        gap: 6px;
+      }
+      .menu-btn {
+        font-size: 16px;
+      }
+    }
+
+    /* ---------- PRODUCT DETAILS RESPONSIVENESS  ---------- */
+    @media (max-width: 992px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .gallery {
+        flex-direction: column;
+      }
+      .thumbs {
+        flex-direction: row;
+        justify-content: center;
+      }
+      .thumbs img {
+        width: 80px;
+        height: 80px;
+      }
+      .action-buttons {
+        flex-direction: row;
+      }
+      .product-info h1 {
+        font-size: 2.2rem;
+      }
+      .price {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-details {
+        width: 95%;
+        margin: 30px auto;
+      }
+      .main-image img {
+        max-height: 300px;
+      }
+      .product-info h1 {
+        font-size: 1.9rem;
+      }
+      .price {
+        font-size: 2rem;
+      }
+      .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .cart-btn, .buy-btn {
+        flex: unset;
+        width: 100%;
+      }
+
+      .product-tabs {
+        padding: 24px 20px;
+        width: 95%;
+      }
+      .tab-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .tab-buttons button {
+        flex: 1 0 auto;
+        padding: 10px 16px;
+        font-size: 0.95rem;
+      }
+      .tab-content h2 {
+        font-size: 1.5rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .social-icons {
+        justify-content: center;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .bottom-links {
+        justify-content: center;
+        gap: 16px;
+      }
+      .payments {
+        font-size: 2.2rem;
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+      }
+      .product-info h1 {
+        font-size: 1.6rem;
+      }
+      .price {
+        font-size: 1.7rem;
+      }
+      .brand-tag {
+        font-size: 0.8rem;
+        padding: 5px 14px;
+      }
+      .quantity {
+        gap: 10px;
+      }
+      .quantity button {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+      }
+      .quantity input {
+        width: 60px;
+        height: 38px;
+      }
+
+      .product-tabs {
+        padding: 18px 14px;
+      }
+      .tab-buttons button {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+      }
+      .tab-content p {
+        font-size: 0.95rem;
+      }
+
+      .footer {
+        padding-top: 40px;
+      }
+      .footer-bottom {
+        padding: 20px 5%;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .product-info h1 {
+        font-size: 1.3rem;
+      }
+      .price {
+        font-size: 1.4rem;
+      }
+      .thumbs img {
+        width: 60px;
+        height: 60px;
+      }
+      .main-image {
+        padding: 15px;
+      }
+      .main-image img {
+        max-height: 200px;
+      }
+      .tab-buttons button {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container nav-container">
+    <div class="logo-wrapper">
+      <img src="https://delfatech.com/images/logos/cropped-delfa-logo.png" alt="Logo">
+      <span class="site-name">Delfa <span>Tech</span></span>
+    </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search...">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="laptops.html">Laptops</a></li>
+        <li><a href="desktops.html">Desktops</a></li>
+        <li><a href="gaming.html">Gaming</a></li>
+        <li><a href="projectors.html">Projectors</a></li>
+      </ul>
+    </nav>
+    <div class="icons">
+      <i class="fa fa-user"></i>
+      <a href="cart.html"><i class="fa fa-cart-shopping"></i></a>
+    </div>
+    <button class="menu-btn" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- PRODUCT DETAILS -->
+<section class="product-details">
+  <div class="breadcrumb">
+    Home &gt; Laptops &gt; Dell &gt; <span>Dell XPS 15</span>
+  </div>
+
+  <div class="product-container">
+    <!-- LEFT SIDE -->
+    <div class="gallery">
+      <div class="thumbs">
+        <img src="https://softlogicit.lk/wp-content/uploads/2021/03/vostro-notebook.jpg" alt="thumb1">
+        <img src="https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/page/landing-page/laptop-comparison-guide/dell-laptop.png?fmt=png-alpha&wid=1200&hei=700" alt="thumb2">
+        <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/04/Inspiron-15_back_angled_left_grey_1280x1280.jpeg" alt="thumb3">
+      </div>
+      <div class="main-image">
+        <img src="https://i5.walmartimages.com/asr/9bdf4281-95b7-48eb-b1b3-3a2e0d6c6c4d.4dbdb842584fae80631dee750514e0a7.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Dell XPS 15">
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="product-info">
+      <span class="brand-tag">Dell Official Store</span>
+      <h1>Dell XPS 15 9530</h1>
+      <div class="rating">★★★★★ <span>(4.9)</span></div>
+      <p class="sold">1250 Sold</p>
+      <div class="price">LKR 260,000</div>
+      <div class="stock">Stock Available : 24</div>
+      <div class="spec-short">
+        <p>Intel Core i7 13th Gen</p>
+        <p>16GB RAM</p>
+        <p>1TB SSD</p>
+        <p>RTX Graphics</p>
+      </div>
+
+      <div class="quantity">
+        <button>-</button>
+        <input type="number" value="1">
+        <button>+</button>
+      </div>
+
+      <div class="action-buttons">
+        <button class="cart-btn">Add To Cart</button>
+        <button class="buy-btn" onclick="window.location.href='cart.html'">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT TABS -->
+<section class="product-tabs">
+  <div class="tab-buttons">
+    <button class="active">Description</button>
+    <button>Specifications</button>
+    <button>Reviews</button>
+  </div>
+  <div class="tab-content">
+    <h2>Description</h2>
+    <p>The Dell XPS 15 is a premium laptop built for creators, professionals and students. With a stunning 15.6" 4K display, powerful 13th Gen Intel Core i7 processor, and NVIDIA RTX graphics, it handles demanding tasks effortlessly. The sleek aluminum chassis and long battery life make it perfect for on-the-go productivity.</p>
+    <p>This model comes with 16GB of RAM and a 1TB NVMe SSD, ensuring fast boot times and ample storage for all your projects.</p>
+  </div>
+
+  
+</section>
+
+<!-- POPULAR PRODUCTS (slider) -->
+<section class="container">
+  <div class="product-header">
+    <h2 class="section-title">Popular Products</h2>
+    <div class="slider-buttons">
+      <button id="leftBtn"><i class="fas fa-chevron-left"></i></button>
+      <button id="rightBtn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div class="products" id="productSlider">
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/61b6z5Hc+qL._AC_UF894,1000_QL80_.jpg" alt="Gaming Keyboard RGB">
+      <h3 class="product-title">Gaming Mouse RGB</h3>
+      <div class="rating">★★★★★ <span>(4.9)</span></div>
+      <div class="sold">1,250 Sold</div>
+      <div class="price">Rs 6,000</div>
+    </div>
+    <div class="product-card">
+      <img src="https://techzone.lk/wp-content/uploads/2023/12/1-29.jpg" alt="Laptops">
+      <h3 class="product-title">Laptops</h3>
+      <div class="rating">★★★★☆ <span>(4.6)</span></div>
+      <div class="sold">850 Sold</div>
+      <div class="price">Rs 45,000</div>
+    </div>
+    <div class="product-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_15UKw_bw0fzJefxHbNmM_tae66i-Q1BKHw&s" alt="RGB Gaming Headset">
+      <h3 class="product-title">RGB Gaming Headset</h3>
+      <div class="rating">★★★★★ <span>(4.8)</span></div>
+      <div class="sold">2,100 Sold</div>
+      <div class="price">Rs 7,900</div>
+    </div>
+    <div class="product-card">
+      <img src="https://i.pinimg.com/736x/9e/43/44/9e4344fbf8840d797623bdaedae115e8.jpg" alt="Desktop Computer">
+      <h3 class="product-title">Desktop Computer</h3>
+      <div class="rating">★★★★★ <span>(5.0)</span></div>
+      <div class="sold">560 Sold</div>
+      <div class="price">Rs 89,900</div>
+    </div>
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/715CeFp-7NL._AC_UF894,1000_QL80_.jpg" alt="JBL">
+      <h3 class="product-title">JBL</h3>
+      <div class="rating">★★★★★ <span>(5.0)</span></div>
+      <div class="sold">56 Sold</div>
+      <div class="price">Rs 6,990</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="https://delfatech.com/images/logos/cropped-delfa-logo.png" alt="Logo" class="footer-logo">
+      <p>Be Comp Shop provides high-quality laptops, gaming accessories, desktops, projectors, and computer components at affordable prices.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Offers</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="#">Laptops</a></li>
+        <li><a href="#">Gaming PCs</a></li>
+        <li><a href="#">Monitors</a></li>
+        <li><a href="#">Keyboards</a></li>
+        <li><a href="#">Headsets</a></li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Info</h3>
+      <p><i class="fas fa-location-dot"></i> Colombo, Sri Lanka</p>
+      <p><i class="fas fa-phone"></i> +94 76 123 4567</p>
+      <p><i class="fas fa-envelope"></i> support@becompshop.com</p>
+      <p><i class="fas fa-clock"></i> Mon - Sat : 8AM - 8PM</p>
+    </div>
+  </div>
+  <div class="payment-section">
+    <h4>Secure Payments</h4>
+    <div class="payments">
+      <i class="fab fa-cc-visa"></i>
+      <i class="fab fa-cc-mastercard"></i>
+      <i class="fab fa-cc-paypal"></i>
+      <i class="fab fa-google-pay"></i>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Be Comp Shop. All Rights Reserved.</p>
+    <div class="bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const products = document.querySelector("#productSlider");
+  document.getElementById("rightBtn").addEventListener("click", () => {
+    products.scrollBy({ left: 300, behavior: "smooth" });
+  });
+  document.getElementById("leftBtn").addEventListener("click", () => {
+    products.scrollBy({ left: -300, behavior: "smooth" });
+  });
+</script>
+
+</body>
+</html>
